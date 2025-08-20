@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
+import vedio from "./images/vedio1.mp4"
+import logo from "./images/logo.png"
 
 const components = [
   {
@@ -85,7 +87,7 @@ export default function RollsRoyceStyleHero() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover -z-10"
       >
-        <source src="/images/vedio1.mp4" type="video/mp4" />
+        <source src={vedio} type="video/mp4" />
       </video>
 
       {/* Overlay */}
@@ -114,7 +116,7 @@ export default function RollsRoyceStyleHero() {
         <div>
           <a href="#">
             <img
-              src="/images/logo.png"
+              src={logo}
               alt="Rolls Royce"
               className="h-8 mx-auto"
             />
