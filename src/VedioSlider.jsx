@@ -13,7 +13,7 @@ export default function VideoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRefs = useRef([]);
 
-  // ✅ Play only center video, pause others
+  // Play only center video, pause others
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
       if (video) {
@@ -27,20 +27,26 @@ export default function VideoCarousel() {
     });
   }, [currentIndex]);
 
-  // Helper for circular indexing
   const getIndex = (index) => (index + videos.length) % videos.length;
 
   return (
     <>
-
-      <div className="z-1 bg-white" >
-        <div className="text-center pt-[90px]  pb-[90px]">
-          <h1 className="text-[40px] font-thin">BOLDER IN ATTITUDE</h1>
-          <p className="text-[14px] text-[#515151] pt-5  font-bold" >Black Badge is a formidable alter ego. Boldly crafted and designed with enhanced power, torque, and control.  </p>
+      <div className="z-1 bg-white">
+        {/* Header */}
+        <div className="text-center pt-20 pb-20 px-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-thin">
+            BOLDER IN ATTITUDE
+          </h1>
+          <p className="text-sm sm:text-base md:text-lg text-[#515151] mt-4 font-bold max-w-2xl mx-auto">
+            Black Badge is a formidable alter ego. Boldly crafted and designed
+            with enhanced power, torque, and control.
+          </p>
         </div>
-        <div className="w-full flex justify-center">
-          <div className="relative flex items-center justify-center overflow-hidden py-10 w-[80%] h-[70vh]">
-            <div className="flex items-center justify-center w-full max-w-6xl relative">
+
+        {/* Carousel */}
+        <div className="w-full flex justify-center px-4 sm:px-6 md:px-16">
+          <div className="relative flex items-center justify-center overflow-hidden py-10 w-full max-w-6xl h-[60vh] sm:h-[65vh] md:h-[70vh]">
+            <div className="flex items-center justify-center w-full relative">
               {videos.map((video, index) => {
                 const leftIndex = getIndex(currentIndex - 1);
                 const rightIndex = getIndex(currentIndex + 1);
@@ -48,13 +54,13 @@ export default function VideoCarousel() {
                 let positionClass = "opacity-0 pointer-events-none"; // hidden
                 if (index === currentIndex) {
                   positionClass =
-                    "z-20 scale-100 opacity-100 w-[60%] translate-x-0 pointer-events-auto";
+                    "z-20 scale-100 opacity-100 w-[60%] sm:w-[50%] md:w-[60%] translate-x-0 pointer-events-auto";
                 } else if (index === leftIndex) {
                   positionClass =
-                    "z-10 scale-90 opacity-70 -translate-x-[85%] w-[40%] pointer-events-none";
+                    "z-10 scale-90 opacity-70 -translate-x-[85%] w-[35%] sm:w-[30%] md:w-[40%] pointer-events-none";
                 } else if (index === rightIndex) {
                   positionClass =
-                    "z-10 scale-90 opacity-70 translate-x-[85%] w-[40%] pointer-events-none";
+                    "z-10 scale-90 opacity-70 translate-x-[85%] w-[35%] sm:w-[30%] md:w-[40%] pointer-events-none";
                 }
 
                 return (
@@ -64,7 +70,7 @@ export default function VideoCarousel() {
                   >
                     <video
                       ref={(el) => (videoRefs.current[index] = el)}
-                      className="rounded-lg shadow-lg w-full h-[400px] object-cover"
+                      className="rounded-lg shadow-lg w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover"
                       muted
                       loop
                       controls={index === currentIndex}
@@ -78,16 +84,20 @@ export default function VideoCarousel() {
 
             {/* Controls */}
             <button
-              className="absolute left-5 top-1/2 -translate-y-1/2 bg-black/50 p-3 text-white rounded-full z-50"
+              className="absolute left-2 sm:left-5 top-1/2 -translate-y-1/2 bg-black/50 p-2 sm:p-3 text-white rounded-full z-50"
               onClick={() =>
-                setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length)
+                setCurrentIndex(
+                  (prev) => (prev - 1 + videos.length) % videos.length
+                )
               }
             >
               ❮
             </button>
             <button
-              className="absolute right-5 top-1/2 -translate-y-1/2 bg-black/50 p-3 text-white rounded-full z-50"
-              onClick={() => setCurrentIndex((prev) => (prev + 1) % videos.length)}
+              className="absolute right-2 sm:right-5 top-1/2 -translate-y-1/2 bg-black/50 p-2 sm:p-3 text-white rounded-full z-50"
+              onClick={() =>
+                setCurrentIndex((prev) => (prev + 1) % videos.length)
+              }
             >
               ❯
             </button>
@@ -98,22 +108,15 @@ export default function VideoCarousel() {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-3 w-3 rounded-full ${index === currentIndex ? "bg-white" : "bg-gray-500"
-                    }`}
+                  className={`h-3 w-3 rounded-full ${
+                    index === currentIndex ? "bg-black" : "bg-gray-400"
+                  }`}
                 ></button>
               ))}
             </div>
           </div>
         </div>
-
-
-
-
-
-
-
       </div>
-
     </>
   );
 }

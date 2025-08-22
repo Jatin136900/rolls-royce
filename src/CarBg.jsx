@@ -1,22 +1,30 @@
-import React from 'react'
-import Car from "./images/rolls.webp"
-
+import React from "react";
+import Car from "./images/rolls.webp";
 
 function CarBg() {
     return (
         <>
-        <div className='z-1'>
+            <div className="relative z-10">
+                {/* Text Section */}
+                <div className="bg-black min-h-[60vh] flex justify-center items-center text-center px-6">
+                    <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-thin text-white max-w-5xl leading-relaxed">
+                        Imagined for those who reject conformity and live on their own terms.
+                        Black Badge beckons the rule-breakers, innovators, trailblazers — and
+                        above all — those who dare.
+                    </h1>
+                </div>
 
-            <div className="bg-black h-[70vh] text-center flex justify-center items-center ">
-                <h1 className="text-[2rem] font-thin w-[70%] text-white">Imagined for those who reject conformity and live on their own terms. Black Badge beckons the rule-breakers, innovators, trailblazers — and above all — those who dare.</h1>
-            </div>
-
-            <div>
-                <img src={Car} alt="" />
-            </div>
+                {/* Image Section */}
+                <div>
+                    <img
+                        src={Car}
+                        alt="Rolls Royce Black Badge"
+                        className="w-full h-auto object-cover"
+                    />
+                </div>
             </div>
         </>
-    )
+    );
 }
 
-export default CarBg
+export default CarBg;

@@ -8,7 +8,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#161615] text-white ">
+    <footer className="bg-[#161615] text-white">
       {/* Top Divider */}
       <hr className="border-gray-700 mb-6 mx-6" />
 
@@ -17,35 +17,65 @@ export default function Footer() {
         <div className="text-3xl tracking-wide font-light hover:text-gray-300 transition duration-300 cursor-pointer">
           ROLLS-ROYCE
         </div>
-        <div className="text-sm tracking-widest mt-1 text-gray-400">MOTOR CARS</div>
+        <div className="text-sm tracking-widest mt-1 text-gray-400">
+          MOTOR CARS
+        </div>
       </div>
 
       {/* Navigation Links */}
-      <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 mb-8 px-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-8 gap-x-10 text-center md:text-left mb-8 px-6">
         <ul className="space-y-2">
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">PRE-OWNED</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">FIND A DEALER</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">PRIVACY</li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            PRE-OWNED
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            FIND A DEALER
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            PRIVACY
+          </li>
         </ul>
         <ul className="space-y-2">
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">COOKIES</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">EU TYRE LABELS</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">CAREERS</li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            COOKIES
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            EU TYRE LABELS
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            CAREERS
+          </li>
         </ul>
         <ul className="space-y-2">
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">PRESSCLUB</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">BATTERY REGULATION</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">SITE MAP</li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            PRESSCLUB
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            BATTERY REGULATION
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            SITE MAP
+          </li>
         </ul>
         <ul className="space-y-2">
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">LEGAL</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">FAQS</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">WHISPERS</li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            LEGAL
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            FAQS
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            WHISPERS
+          </li>
         </ul>
         <ul className="space-y-2">
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">COMPLAINTS</li>
-          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">CONTACT</li>
-          <li className="font-medium tracking-wide flex items-center hover:text-gray-300 cursor-pointer">
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            COMPLAINTS
+          </li>
+          <li className="font-medium tracking-wide hover:text-gray-300 cursor-pointer">
+            CONTACT
+          </li>
+          <li className="font-medium tracking-wide flex items-center justify-center md:justify-start hover:text-gray-300 cursor-pointer">
             LANGUAGE <span className="ml-2 text-xl">🇬🇧</span>
           </li>
         </ul>

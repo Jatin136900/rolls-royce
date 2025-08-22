@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
-import vedio from "./images/vedio1.mp4"
-import logo from "./images/logo.png"
-
-
-
+import { motion, AnimatePresence } from "framer-motion"; 
+import vedio from "./images/vedio1.mp4";
+import logo from "./images/logo.png";
 
 const components = [
   {
@@ -80,10 +78,12 @@ function ListItem({ title, href, children }) {
 export default function RollsRoyceStyleHero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // 👇 search state
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
   return (
-    <>
-    
-    <div className="relative min-h-screen overflow-hidden text-white z-1">
+    <div className="relative min-h-screen overflow-hidden text-white">
       {/* Background Video */}
       <video
         autoPlay
@@ -99,20 +99,23 @@ export default function RollsRoyceStyleHero() {
       <div className="absolute inset-0 bg-black/40 -z-10"></div>
 
       {/* Header */}
-      <header className="absolute top-0 left-0 right-0 px-6 py-4 flex items-center justify-between text-sm font-semibold tracking-wide z-20">
+      <header className="absolute top-0 left-0 right-0 px-4 md:px-6 py-4 flex items-center justify-between text-xs sm:text-sm font-semibold tracking-wide z-20">
         {/* Left Section */}
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-4 md:space-x-6">
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="flex items-center space-x-2 md:hidden text-white/90 hover:text-white"
+            className="flex items-center space-x-1 md:hidden text-white/90 hover:text-white"
           >
-            <Menu className="h-6 w-6" />
-            <span>MENU</span>
+            <Menu className="h-5 w-5" />
+            <span className="text-sm">MENU</span>
           </button>
 
           {/* Black Badge link (desktop only) */}
-          <a href="#" className="hidden md:block cursor-pointer text-white/90 hover:text-white">
+          <a
+            href="#"
+            className="hidden md:block cursor-pointer text-white/90 hover:text-white"
+          >
             BLACK BADGE
           </a>
         </div>
@@ -120,24 +123,53 @@ export default function RollsRoyceStyleHero() {
         {/* Center Logo */}
         <div>
           <a href="#">
-            <img
-              src={logo}
-              alt="Rolls Royce"
-              className="h-9 mx-auto"
-            />
+            <img src={logo} alt="Rolls Royce" className="h-7 sm:h-9 mx-auto" />
           </a>
         </div>
 
-        {/* Right Section */}
-        <div className="flex items-center space-x-3 cursor-pointer text-white/90 hover:text-white">
-          <Search className="h-4 w-4" />
-          <a href="#">FIND A DEALER</a>
+        {/* Right Section (Search + Dealer) */}
+        <div className="flex items-center space-x-2 sm:space-x-3 cursor-pointer text-white/90 hover:text-white">
+          <button
+            onClick={() => setSearchOpen(!searchOpen)}
+            className="flex items-center gap-1"
+          >
+            <Search className="h-4 w-4" />
+            <span className="hidden sm:block">FIND A DEALER</span>
+          </button>
         </div>
       </header>
 
+      {/* 🔍 Search Bar Animation */}
+      <AnimatePresence>
+        {searchOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-16 left-1/2 -translate-x-1/2 w-[90%] md:w-[60%] lg:w-[40%] z-30"
+          >
+            <input
+              autoFocus
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search dealers..."
+              className="w-full px-4 py-3 rounded-xl bg-black/70 backdrop-blur-md border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            {/* Live result preview */}
+            {query && (
+              <div className="mt-2 bg-black/70 backdrop-blur-md rounded-xl border border-white/20 p-3 text-sm text-white">
+                Searching for: <span className="font-semibold">{query}</span>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Desktop Navigation */}
-      <nav className="absolute top-20 w-full hidden md:flex justify-center px-6 py-3">
-        <div className="flex gap-6">
+      <nav className="absolute top-16 sm:top-20 w-full hidden md:flex justify-center px-4 py-2 sm:py-3">
+        <div className="flex gap-4 lg:gap-6 flex-wrap justify-center">
           <Dropdown label="Discover">
             <div className="space-y-2">
               <ListItem href="/docs" title="Introduction">
@@ -152,62 +184,26 @@ export default function RollsRoyceStyleHero() {
             </div>
           </Dropdown>
 
-          <Dropdown label="Spectre">
-            <div className="grid grid-cols-1 gap-2">
-              {components.map((c) => (
-                <ListItem key={c.title} href={c.href} title={c.title}>
-                  {c.description}
-                </ListItem>
-              ))}
-            </div>
-          </Dropdown>
-
-          <Dropdown label="Ghost Series II">
-            <div className="grid grid-cols-1 gap-2">
-              {components.map((c) => (
-                <ListItem key={c.title} href={c.href} title={c.title}>
-                  {c.description}
-                </ListItem>
-              ))}
-            </div>
-          </Dropdown>
-
-          <Dropdown label="Cullinan Series II">
-            <div className="grid grid-cols-1 gap-2">
-              {components.map((c) => (
-                <ListItem key={c.title} href={c.href} title={c.title}>
-                  {c.description}
-                </ListItem>
-              ))}
-            </div>
-          </Dropdown>
-
-          <Dropdown label="Commission">
-            <div className="grid grid-cols-1 gap-2">
-              {components.map((c) => (
-                <ListItem key={c.title} href={c.href} title={c.title}>
-                  {c.description}
-                </ListItem>
-              ))}
-            </div>
-          </Dropdown>
-
-          <Dropdown label="Enquire">
-            <div className="grid grid-cols-1 gap-2">
-              {components.map((c) => (
-                <ListItem key={c.title} href={c.href} title={c.title}>
-                  {c.description}
-                </ListItem>
-              ))}
-            </div>
-          </Dropdown>
+          {["Spectre", "Ghost Series II", "Cullinan Series II", "Commission", "Enquire"].map(
+            (menu) => (
+              <Dropdown key={menu} label={menu}>
+                <div className="grid grid-cols-1 gap-2">
+                  {components.map((c) => (
+                    <ListItem key={c.title} href={c.href} title={c.title}>
+                      {c.description}
+                    </ListItem>
+                  ))}
+                </div>
+              </Dropdown>
+            )
+          )}
         </div>
       </nav>
 
       {/* Mobile Side Menu */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black/70 z-30 flex">
-          <div className="bg-black/90 backdrop-blur-xl w-64 p-6 space-y-6">
+          <div className="bg-black/90 backdrop-blur-xl w-64 max-w-[80%] p-6 space-y-6">
             {/* Close Button */}
             <button
               onClick={() => setIsMenuOpen(false)}
@@ -218,13 +214,23 @@ export default function RollsRoyceStyleHero() {
             </button>
 
             {/* Mobile Nav Links */}
-            <div className="flex flex-col space-y-4 text-lg">
-              <a className="text-white/80 hover:text-white" href="#">Discover</a>
-              <a className="text-white/80 hover:text-white" href="#">Spectre</a>
-              <a className="text-white/80 hover:text-white" href="#">Ghost Series II</a>
-              <a className="text-white/80 hover:text-white" href="#">Cullinan Series II</a>
-              <a className="text-white/80 hover:text-white" href="#">Commission</a>
-              <a className="text-white/80 hover:text-white" href="#">Enquire</a>
+            <div className="flex flex-col space-y-4 text-base sm:text-lg">
+              {[
+                "Discover",
+                "Spectre",
+                "Ghost Series II",
+                "Cullinan Series II",
+                "Commission",
+                "Enquire",
+              ].map((item) => (
+                <a
+                  key={item}
+                  className="text-white/80 hover:text-white"
+                  href="#"
+                >
+                  {item}
+                </a>
+              ))}
             </div>
           </div>
           {/* Click outside to close */}
@@ -233,18 +239,13 @@ export default function RollsRoyceStyleHero() {
       )}
 
       {/* Center Text */}
-      <div className="flex items-center justify-center h-screen z-20 px-4 text-center pt-[18%]">
-        <h1 className="text-4xl md:text-6xl font-light tracking-[0.4em] flex flex-wrap items-center justify-center space-x-4">
+      <div className="flex items-center justify-center min-h-screen z-20 px-2 sm:px-4 text-center pt-[30%] sm:pt-[18%]">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] flex flex-wrap items-center justify-center gap-2">
           <span>BLACK</span>
-          <span className="text-5xl md:text-7xl">&infin;</span>
+          <span className="text-4xl sm:text-5xl md:text-7xl">&infin;</span>
           <span>BADGE</span>
         </h1>
       </div>
-
-
-
-     
     </div>
-      </>
   );
 }
