@@ -11,16 +11,20 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
+    "css": "^3.0.0",
     "lightgallery": "^2.9.0-beta.1",
     "lucide-react": "^0.540.0",
+    "pagination": "^0.4.6",
     "plugins": "^0.4.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-slick": "^0.31.0",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.2.10",
     "tailwindcss": "^4.1.12",
-    "thumbnail": "^0.1.9"
+    "thumbnail": "^0.1.9",
+    "tw-elements-react": "^1.0.0-alpha-end"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

@@ -3,6 +3,9 @@ import { Menu, X, Search, ChevronDown } from "lucide-react";
 import vedio from "./images/vedio1.mp4"
 import logo from "./images/logo.png"
 
+
+
+
 const components = [
   {
     title: "Alert Dialog",
@@ -78,7 +81,9 @@ export default function RollsRoyceStyleHero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen overflow-hidden text-white">
+    <>
+    
+    <div className="relative min-h-screen overflow-hidden text-white z-1">
       {/* Background Video */}
       <video
         autoPlay
@@ -118,7 +123,7 @@ export default function RollsRoyceStyleHero() {
             <img
               src={logo}
               alt="Rolls Royce"
-              className="h-8 mx-auto"
+              className="h-9 mx-auto"
             />
           </a>
         </div>
@@ -235,6 +240,11 @@ export default function RollsRoyceStyleHero() {
           <span>BADGE</span>
         </h1>
       </div>
+
+
+
+     
     </div>
+      </>
   );
 }

@@ -3,21 +3,25 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './Header.jsx'
-
-
-
-
-
-
-
+import CarBg from './CarBg.jsx'
+import VedioSlider from './VedioSlider.jsx'
+import Iron from './Iron.jsx'
+import Card from './Card.jsx'
+import Footer from './Footer.jsx'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
+
       <Header />
+      <CarBg />
+      <VedioSlider />
+      <Iron />
+      <Card />
+      <Footer />
 
 
     </>
