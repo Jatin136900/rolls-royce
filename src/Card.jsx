@@ -25,7 +25,6 @@ export default function Card() {
     return (
         <>
             <div className="z-1">
-                {/* Header Section */}
                 <div className="bg-black min-h-screen flex flex-col justify-center items-center text-center px-6 py-16">
                     <div className="w-full max-w-4xl">
                         <h1 className="text-white text-2xl sm:text-3xl md:text-[45px] font-thin mb-6">

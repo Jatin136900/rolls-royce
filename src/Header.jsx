@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion"; 
+import { motion, AnimatePresence } from "framer-motion";
 import vedio from "./images/vedio1.mp4";
 import logo from "./images/logo.png";
 
@@ -82,6 +82,13 @@ export default function RollsRoyceStyleHero() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
 
+  // search filter
+  const filteredResults = components.filter(
+    (c) =>
+      c.title.toLowerCase().includes(query.toLowerCase()) ||
+      c.description.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <div className="relative min-h-screen overflow-hidden text-white">
       {/* Background Video */}
@@ -154,13 +161,28 @@ export default function RollsRoyceStyleHero() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search dealers..."
+              placeholder="Search dealers or components..."
               className="w-full px-4 py-3 rounded-xl bg-black/70 backdrop-blur-md border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white"
             />
-            {/* Live result preview */}
+
+            {/* Live Search Results */}
             {query && (
-              <div className="mt-2 bg-black/70 backdrop-blur-md rounded-xl border border-white/20 p-3 text-sm text-white">
-                Searching for: <span className="font-semibold">{query}</span>
+              <div className="mt-2 bg-black/70 backdrop-blur-md rounded-xl border border-white/20 p-3 text-sm text-white space-y-2 max-h-64 overflow-y-auto">
+                {filteredResults.map((c) => (
+                  <a
+                    key={c.title}
+                    href={c.href}
+                    className="block p-2 rounded-lg hover:bg-white/10 transition"
+                  >
+                    <div className="font-medium">{c.title}</div>
+                    <div className="text-xs text-white/70">{c.description}</div>
+                  </a>
+                ))}
+
+                {/* If nothing found */}
+                {filteredResults.length === 0 && (
+                  <p className="text-white/50">No results found.</p>
+                )}
               </div>
             )}
           </motion.div>
@@ -184,19 +206,23 @@ export default function RollsRoyceStyleHero() {
             </div>
           </Dropdown>
 
-          {["Spectre", "Ghost Series II", "Cullinan Series II", "Commission", "Enquire"].map(
-            (menu) => (
-              <Dropdown key={menu} label={menu}>
-                <div className="grid grid-cols-1 gap-2">
-                  {components.map((c) => (
-                    <ListItem key={c.title} href={c.href} title={c.title}>
-                      {c.description}
-                    </ListItem>
-                  ))}
-                </div>
-              </Dropdown>
-            )
-          )}
+          {[
+            "Spectre",
+            "Ghost Series II",
+            "Cullinan Series II",
+            "Commission",
+            "Enquire",
+          ].map((menu) => (
+            <Dropdown key={menu} label={menu}>
+              <div className="grid grid-cols-1 gap-2">
+                {components.map((c) => (
+                  <ListItem key={c.title} href={c.href} title={c.title}>
+                    {c.description}
+                  </ListItem>
+                ))}
+              </div>
+            </Dropdown>
+          ))}
         </div>
       </nav>
 
