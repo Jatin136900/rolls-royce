@@ -9,7 +9,7 @@ import bg2 from "./images/bg2.webp";
 export default function Iron() {
   return (
     <>
-      <div className="z-20">
+      <div className="z-[20] bg-white">
         {/* Section 1 */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 px-6 md:px-16 py-16">
           {/* Left Content */}

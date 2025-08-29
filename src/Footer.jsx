@@ -8,7 +8,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#161615] text-white">
+    <footer className="bg-[#161615] text-white sticky bottom-0 z-[-99]  ">
       {/* Top Divider */}
       <hr className="border-gray-700 mb-6 mx-6" />
 
